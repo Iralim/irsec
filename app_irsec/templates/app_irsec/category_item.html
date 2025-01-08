@@ -1,0 +1,21 @@
+<li class="category">
+    {{ category.name }}
+    
+    <!-- Темы категории -->
+    {% if category.topics.all %}
+        <ul class="topics">
+            {% for topic in category.topics.all %}
+            <li class="topic" onclick="loadTopicContent({{ topic.id }})">{{ topic.name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    
+    <!-- Подкатегории -->
+    {% if category.subcategories.all %}
+        <ul class="sub-menu">
+            {% for subcategory in category.subcategories.all %}
+                {% include 'app_irsec/category_item.html' with category=subcategory %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>

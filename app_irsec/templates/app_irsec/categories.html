@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Menu</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <ul class="menu">
+        {% for category in categories %}
+            <li class="category">
+                {{ category.name }}
+                <!-- Темы корневой категории -->
+                {% if category.topics.all %}
+                    <ul class="topics">
+                        {% for topic in category.topics.all %}
+                            <li class="topic" onclick="loadTopicContent({{ topic.id }})">{{ topic.name }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
+                <!-- Подкатегории -->
+                {% if category.subcategories.all %}
+                    <ul class="sub-menu">
+                        {% for subcategory in category.subcategories.all %}
+                            {% include 'app_irsec/category_item.html' with category=subcategory %}
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+    <!-- Место для отображения контента -->
+    <div id="content-display">
+        <p>-</p>
+    </div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>

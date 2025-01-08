@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Base HTML {% endblock %}</title>
+    <style>
+        ul { list-style-type: none; }
+        .category { font-weight: bold; }
+        .topic { font-style: italic; }
+    </style>
+</head>
+<body>
+    <div style="border: 1px solid black;">
+        <h1>{% block Header %} BASE HTML {% endblock %}</h1>
+        {% block content %} {% endblock %}
+    </div>   
+</body>
+</html>
